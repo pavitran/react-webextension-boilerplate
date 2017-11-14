@@ -5,6 +5,9 @@ import CopyWebpackPlugin from 'copy-webpack-plugin';
 
 import paths from './paths';
 
+const DEFAULT_HOST = "'localhost'";
+const DEFAULT_PORT = 3004;
+
 module.exports = {
   devtool: 'cheap-module-source-map',
   entry: {
@@ -13,7 +16,10 @@ module.exports = {
     // Then, add following config to entry
     // background: paths.backgroundSrc,
     // content: paths.contentSrc
-    popup: paths.popupSrc
+    popup: [
+      require.resolve('./webpackHotDevClient'),
+      paths.popupSrc
+    ]
   },
   output: {
     path: paths.devBuild,
@@ -47,7 +53,9 @@ module.exports = {
     }),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('development')
+      'process.env.NODE_ENV': JSON.stringify('development'),
+      'process.env.HOST': process.env.HOST || DEFAULT_HOST,
+      'process.env.PORT': process.env.PORT || DEFAULT_PORT
     }),
     new WriteFilePlugin({
       test: /\.bundle(\.js|\.js\.map)$|\.html$/
