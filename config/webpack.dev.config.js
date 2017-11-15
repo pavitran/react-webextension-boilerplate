@@ -7,17 +7,17 @@ import paths from './paths';
 
 const DEFAULT_HOST = "'localhost'";
 const DEFAULT_PORT = 3004;
+const devHotClient = require.resolve('./webpackHotDevClient');
 
 module.exports = {
   devtool: 'cheap-module-source-map',
   entry: {
-    // In this boilerplate, we only enable the popup script for demo
-    // You can still create your own background or content scripts under src folder
-    // Then, add following config to entry
-    // background: paths.backgroundSrc,
-    // content: paths.contentSrc
+    background: [
+      devHotClient,
+      paths.backgroundSrc
+    ],
     popup: [
-      require.resolve('./webpackHotDevClient'),
+      devHotClient,
       paths.popupSrc
     ]
   },

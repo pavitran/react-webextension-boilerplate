@@ -10,8 +10,8 @@ module.exports = {
     // In this boilerplate, we only enable the popup script for demo
     // You can still create your own background or content scripts under src folder
     // Then, add following config to entry
-    // background: paths.backgroundSrc,
     // content: paths.contentSrc
+    background: paths.backgroundSrc,
     popup: paths.popupSrc
   },
   output: {

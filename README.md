@@ -31,6 +31,9 @@ After webpack bundle successfully, you will see `build-dev` folder will be creat
 
 > You can change the `build-dev` in `config/paths` file.
 
+When development, you can change the `popup` and `background` scripts, `webpack` will reload the extension automatically instead of reload it manually.   
+Above mechanism is work well on Chrome and Firefox currently.
+
 ### Production
 
 Run following command to get your extension to production ready:
