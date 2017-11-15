@@ -1,23 +1,21 @@
-/* eslint jsx-a11y/no-static-element-interactions: 0 */
 import 'chrome-browser-object-polyfill';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import { Store } from 'react-chrome-redux';
+
 import './index.scss';
+import Popup from './containers/popup';
 
-const Popup = () => {
-  const openGithub = () => {
-    browser.tabs.create({
-      active: true,
-      url: 'https://github.com/shopback/react-webextension-boilerplate'
-    });
-  };
 
-  return (
-    <div className="Popup" onClick={ openGithub }>
-      This popup is just an example.<br />
-      Click it to see more details about <code>react-webextension-boilerplate</code>
-    </div>
-  );
-};
+const store = new Store({
+  portName: 'WEBEXT_APP'
+});
 
-ReactDOM.render(<Popup />, document.getElementById('app'));
+store.ready().then(() => {
+  ReactDOM.render(
+    <Provider store={ store }>
+      <Popup />
+    </Provider>,
+    document.getElementById('app'));
+});

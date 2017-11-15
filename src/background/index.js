@@ -1,2 +1,10 @@
-/* eslint no-console: 0 */
-console.log('This is background scripts, change anything here');
+import { createStore } from 'redux';
+import { wrapStore } from 'react-chrome-redux';
+
+import rootReducer from './reducers';
+
+const store = createStore(rootReducer);
+
+wrapStore(store, {
+  portName: 'WEBEXT_APP'
+});
