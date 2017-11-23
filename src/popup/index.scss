@@ -1,9 +1,10 @@
-.Popup {
+.popup {
   white-space: nowrap;
 }
 
-.Popup:hover {
-  cursor: pointer;
+body {
+  height: 100px;
+  width: 375px;
 }
 
 code {
